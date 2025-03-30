@@ -1,44 +1,14 @@
-import { Career } from "@/components/career";
-import Layout from "../layout/layout";
-import { Skill } from "@/components/skill";
-import {
-  AboutContentsType,
-  CareerContentsType,
-  SkillContentsType,
-} from "@/types/types";
-import { useEffect, useState } from "react";
+import { Career } from "@/components/Career";
+import { Skill } from "@/components/Skill";
+import useFetchAbout from "@/hooks/useFetchAbout";
+import useFetchCareer from "@/hooks/useFetchCareer";
+import useFetchSkill from "@/hooks/useFetchSkill";
+import Layout from "@/layout/Layout";
 
 const Home = () => {
-  const [aboutContent, setAboutContent] = useState<AboutContentsType>();
-  const [careerContents, setCareerContents] = useState<CareerContentsType[]>(
-    []
-  );
-  const [skillsContents, setSkillsContents] = useState<SkillContentsType[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [aboutResponse, careerResponse, skillsResponse] =
-          await Promise.all([
-            fetch("/text/about.json"),
-            fetch("/text/career.json"),
-            fetch("/text/skills.json"),
-          ]);
-
-        const aboutData: AboutContentsType = await aboutResponse.json();
-        const careerData: CareerContentsType[] = await careerResponse.json();
-        const skillsData: SkillContentsType[] = await skillsResponse.json();
-
-        setAboutContent(aboutData);
-        setCareerContents(careerData);
-        setSkillsContents(skillsData);
-      } catch (error) {
-        console.error("データの取得に失敗しました:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const { about } = useFetchAbout();
+  const { career } = useFetchCareer();
+  const { skill } = useFetchSkill();
 
   return (
     <Layout>
@@ -62,7 +32,7 @@ const Home = () => {
             About
           </div>
           <div className="flex flex-col justify-center tb:text-lg sp:text-lg text-sm text-gray-700">
-            <div className="mx-auto text-center">{aboutContent?.content}</div>
+            <div className="mx-auto text-center">{about?.content}</div>
           </div>
         </section>
         <section
@@ -72,8 +42,8 @@ const Home = () => {
           <div className="tb:text-4xl sp:text-3xl text-2xl font-semibold mb-6">
             Career
           </div>
-          {careerContents.map((career, i) => (
-            <Career key={i} date={career.date} content={career.content} />
+          {career?.map((c, i) => (
+            <Career key={i} date={c.date} content={c.content} />
           ))}
         </section>
 
@@ -84,13 +54,13 @@ const Home = () => {
           <div className="tb:text-4xl sp:text-3xl text-2xl font-semibold mb-6">
             Skills
           </div>
-          {skillsContents.map((skills, i) => (
+          {skill?.map((s, i) => (
             <Skill
               key={i}
-              firstIcon={skills.firstIcon}
-              secondIcon={skills.secondIcon}
-              skill={skills.skill}
-              description={skills.description}
+              firstIcon={s.firstIcon}
+              secondIcon={s.secondIcon}
+              skill={s.skill}
+              description={s.description}
             />
           ))}
         </section>
@@ -103,12 +73,23 @@ const Home = () => {
           </div>
           <a
             href="https://github.com/kawaaaas"
-            className="cursor-pointer flex text-gray-700"
+            className="cursor-pointer flex text-gray-700 items-center"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={"image/github.svg"} className="mr-2" />
+            <img src={"image/github.svg"} className="mr-2 w-4" />
             <div>Github</div>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/shota-kawasaki-b2617222b/"
+            className="cursor-pointer flex text-gray-700 items-center"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="w-4">
+              <img src={"image/linkedin.png"} className="mr-2" />
+            </div>
+            <div>Linkedin</div>
           </a>
         </section>
       </main>

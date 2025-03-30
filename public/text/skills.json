@@ -14,12 +14,17 @@
   {
     "firstIcon": "image/react.png",
     "skill": "React",
-    "description": "Next.jsを含め、フレームワークを用いた複雑なUIを実装できます。"
+    "description": "Next.jsを含め、様々なフレームワークやライブラリを用いた複雑なUIを実装できます。"
   },
   {
     "firstIcon": "image/nestjs.svg",
     "skill": "Nest.js",
     "description": "モダンなNode.jsのフレームワークを用い、基本的なAPIを構築できます。"
+  },
+  {
+    "firstIcon": "image/ruby.png",
+    "skill": "Ruby on Rails",
+    "description": "Ruby on Railsを用いた、APIの設計や実装ができます。"
   },
   {
     "firstIcon": "image/flutter.png",
@@ -44,6 +49,6 @@
   {
     "firstIcon": "image/document.svg",
     "skill": "その他資格",
-    "description": "TOEIC 810点 \n 応用情報技術者試験 合格 \n AWS認定クラウドプラクティショナー \n AWS認定ソリューションアーキテクトアソシエイト \n 情報処理安全確保支援士 合格"
+    "description": "TOEIC 810点 \n 応用情報技術者試験 合格 \n AWS認定クラウドプラクティショナー \n AWS認定ソリューションアーキテクトアソシエイト \n AWS認定デベロッパーアソシエイト \n 情報処理安全確保支援士 合格"
   }
 ]
