@@ -1,8 +1,8 @@
-## 概要
+## Overview
 
-[自己紹介サイト](https://d39zdc2lqks7jj.cloudfront.net/index.html)のリポジトリ
+Repository for my personal website
 
-## 技術スタック
+## Technology Stack
 
 - Next.js
 - Tailwind CSS
